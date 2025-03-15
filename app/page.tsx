@@ -2,12 +2,13 @@
 
 import { FaJava, FaCode, FaPython, FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaPhp, FaGit, FaGithub } from 'react-icons/fa';
 import { SiTailwindcss, SiExpress, SiLaravel, SiFirebase, SiMysql, SiMongodb, SiFigma, SiRender } from 'react-icons/si';
-import { Download, Github, Linkedin, Mail, Award, Medal, Trophy, ExternalLink } from 'lucide-react';
+import { Download, Github, Linkedin, Mail, Award, Medal, Trophy, ExternalLink, Menu } from 'lucide-react';
 import Image from 'next/image';
 import { useState } from 'react';
 
 export default function Home() {
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentVideo, setCurrentVideo] = useState(null);
 
@@ -166,13 +167,36 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-blue-900/20" />
       </div>
 
-      {/* Navigation */}
-      <nav className="hidden md:block fixed top-0 w-full backdrop-blur-md bg-black/30 border-b border-white/10 z-50">
+
+      {/* Mobile Navigation */}
+      <nav className="md:hidden fixed top-0 w-full backdrop-blur-md bg-black/50 z-50">
+        <div className="px-4 py-4">
+          <div className="flex items-center justify-end">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+            >
+              <Menu size={24} />
+            </button>
+          </div>
+          {isMenuOpen && (
+            <div className="absolute top-full left-0 w-full bg-black/95 backdrop-blur-md py-4 border-b border-white/10">
+              <div className="flex flex-col space-y-4 px-4">
+                <a href="#about" onClick={() => setIsMenuOpen(false)} className="nav-link">About</a>
+                <a href="#projects" onClick={() => setIsMenuOpen(false)} className="nav-link">Projects</a>
+                <a href="#skills" onClick={() => setIsMenuOpen(false)} className="nav-link">Skills</a>
+                <a href="#contact" onClick={() => setIsMenuOpen(false)} className="nav-link">Contact</a>
+              </div>
+            </div>
+          )}
+        </div>
+      </nav>
+
+
+      {/* Desktop Navigation */}
+      <nav className="hidden md:block fixed top-0 w-full backdrop-blur-md bg-black/50 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <span className="text-2xl font-bold gradient-text">
-              Darshan
-            </span>
+          <div className="flex items-center justify-center h-16">
             <div className="flex space-x-8">
               <a href="#about" className="nav-link">About</a>
               <a href="#projects" className="nav-link">Projects</a>
@@ -187,16 +211,16 @@ export default function Home() {
         {/* Hero Section */}
         <section id="about" className="min-h-screen flex items-center justify-center pt-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <h2 className="text-5xl font-bold">
+            <div className="space-y-8 text-center md:text-left">
+              <h2 className="text-4xl md:text-5xl font-bold">
                 <span className="gradient-text">Hey👋,<br />I'm Darshan</span>
               </h2>
-              <p className="text-xl text-white/50">
-                <span className="text-3xl font-bold gradient-text">Full Stack Develospaner</span><br/>
+              <p className="text-lg md:text-xl text-white/50">
+                <span className="text-2xl md:text-3xl font-bold gradient-text">Full Stack Developer</span><br />
                 Crafting digital experiences with code. Proficient in MERN stack,
                 React Native, and Laravel development.
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-4 justify-center md:justify-start">
                 <button className="rotating-border">
                   <a target='_blank'
                     href="https://drive.google.com/file/d/18Bj3A1ao7_O5I0OLfkgBJojMnCBKMJ0z/view"
@@ -212,7 +236,7 @@ export default function Home() {
                   <span>Contact Me</span>
                 </a>
               </div>
-              <div className="flex gap-6 pt-4">
+              <div className="flex gap-6 pt-4 justify-center md:justify-start">
                 <a target='_blank' href="https://github.com/darshan-dinesh-mp" className="text-white/50 hover:text-white transition-colors duration-300">
                   <Github size={24} />
                 </a>
@@ -221,18 +245,17 @@ export default function Home() {
                 </a>
               </div>
             </div>
-            <div className="relative">
+            <div className="relative order-first md:order-last">
               <div className="floating-element aspect-square rounded-full overflow-hidden
-                    border-4 border-white/10 shadow-2xl">
+                            border-4 border-white/10 shadow-2xl">
                 <Image
                   src="/images/profile.png"
                   alt="Profile"
-                  width={100}
-                  height={100}
+                  width={400}
+                  height={400}
                   className="w-full h-full object-cover"
                 />
               </div>
-              {/* Decorative Elements */}
               <div className="absolute -z-10 inset-0 blur-3xl bg-gradient-to-br from-purple-500/30 to-blue-500/30" />
             </div>
           </div>
@@ -242,7 +265,7 @@ export default function Home() {
         {/* Projects Section */}
         <section id="projects" className="py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-5xl font-bold text-center mb-16 gradient-text">
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">
               Featured Projects
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -308,7 +331,7 @@ export default function Home() {
         {/* Skills Section */}
         <section id="skills" className="py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-5xl font-bold text-center mb-16 gradient-text">
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">
               My Tech Skills
             </h2>
             <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-2">
@@ -328,7 +351,7 @@ export default function Home() {
         {/* Certificates Section */}
         <section className="py-20 relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-5xl font-bold text-center mb-16 gradient-text">
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">
               Certificates
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -362,7 +385,7 @@ export default function Home() {
         {/* Achievements Section */}
         <section className="py-20 relative">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-5xl font-bold text-center mb-16 gradient-text">
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">
               Achievements
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
@@ -386,7 +409,7 @@ export default function Home() {
         {/* Education Timeline Section */}
         <section className="py-20 relative">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-5xl font-bold text-center mb-16 gradient-text">
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">
               Education
             </h2>
             <div className="space-y-8">
@@ -409,7 +432,7 @@ export default function Home() {
         {/* Contact Section */}
         <section id="contact" className="py-20">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-5xl font-bold text-center mb-16 gradient-text">
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">
               Get in Touch
             </h2>
             <form onSubmit={handleSubmit} className="space-y-6">
