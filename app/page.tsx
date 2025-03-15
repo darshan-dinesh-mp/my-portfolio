@@ -1,0 +1,465 @@
+'use client';
+
+import { FaJava, FaCode, FaPython, FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaPhp, FaGit, FaGithub } from 'react-icons/fa';
+import { SiTailwindcss, SiExpress, SiLaravel, SiFirebase, SiMysql, SiMongodb, SiFigma, SiRender } from 'react-icons/si';
+import { Download, Github, Linkedin, Mail, Award, Medal, Trophy, ExternalLink } from 'lucide-react';
+import Image from 'next/image';
+import { useState } from 'react';
+
+export default function Home() {
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentVideo, setCurrentVideo] = useState(null);
+
+  const openModal = (videoSrc: any) => {
+    setCurrentVideo(videoSrc);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setCurrentVideo(null);
+    setIsModalOpen(false);
+  };
+
+
+  //Contact Form Logic
+  const [loading, setLoading] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const formData = new FormData(e.target as HTMLFormElement);
+
+    try {
+      await fetch(
+        'https://docs.google.com/forms/d/e/1FAIpQLSeVhNEtjlUp2-co2nCmM1_7RazxCMJNAux1YX23OVQmrekjXA/formResponse',
+        {
+          method: 'POST',
+          body: formData,
+          mode: 'no-cors',
+        }
+      );
+
+      setAlertMessage('Message received. I will get back to you soon.');
+    } catch (error) {
+      setAlertMessage('There was an error sending your message. Please try again later.');
+    }
+
+    setShowAlert(true);
+    setLoading(false);
+    (e.target as HTMLFormElement).reset();
+  };
+
+  const closeAlert = () => {
+    setShowAlert(false);
+  };
+
+
+  const skillsWithIcons = [
+    { name: 'HTML', icon: <FaHtml5 className="text-orange-600 text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'CSS', icon: <FaCss3Alt className="text-blue-600 text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'JavaScript', icon: <FaJs className="text-yellow-500 text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'Tailwind CSS', icon: <SiTailwindcss className="text-teal-400 text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'React', icon: <FaReact className="text-blue-400 text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'React Native', icon: <FaReact className="text-teal-500 text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'Node', icon: <FaNodeJs className="text-green-600 text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'Express', icon: <SiExpress className="text-gray-600 text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'PHP', icon: <FaPhp className="text-[#787CB5] text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'Laravel', icon: <SiLaravel className="text-[#FF2D20] text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'Firebase', icon: <SiFirebase className="text-[#FFCA28] text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'MySQL', icon: <SiMysql className="text-blue-700 text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'MongoDB', icon: <SiMongodb className="text-green-500 text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'Git', icon: <FaGit className="text-orange-500 text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'GitHub', icon: <FaGithub className="text-black text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'Figma', icon: <SiFigma className="text-pink-500 text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'Render', icon: <SiRender className="text-[#46E3B7] text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'Java', icon: <FaJava className="text-[#F89820] text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'C', icon: <FaCode className="text-[#A8B9CC] text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'Python', icon: <FaPython className="text-[#3776AB] text-4xl group-hover:scale-110 transition-transform" /> },
+  ];
+
+  const projects = [
+    {
+      title: 'Automated Feedback Collection and Academic Performance System',
+      description: 'Platform where faculties can efficiently manage their students and track their progress, with features for assessment and communication.',
+      videoSrc: '/projects/smap_SR.mp4',
+      tech: ['HTML', 'CSS', 'JavaScript', 'Laravel', 'MySQL'],
+      image: 'https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=800&q=80',
+      githubLink: 'https://github.com/darshan-dinesh-mp/Automated-Feedback-Collection-and-Academic-Performance-System',
+    },
+    {
+      title: 'Eatables - Food Discovery and Review Platform',
+      description: ' A web app where users can discover local food options, leave reviews, and create personalized must-try lists.',
+      videoSrc: '/projects/eatables_SR.mp4',
+      tech: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL'],
+      image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80',
+      githubLink: 'https://github.com/darshan-dinesh-mp/eatables.git',
+    },
+    {
+      title: 'Money Flow',
+      description: 'Full Stack Finance Tracking web application.',
+      videoSrc: '/projects/MoneyFlow_SR.mp4',
+      tech: ['React', 'Node.js', 'Express', 'MongoDB'],
+      image: 'https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80',
+      githubLink: 'https://github.com/darshan-dinesh-mp/money-flow-web-app',
+    },
+    {
+      title: 'ConverTo',
+      description: 'Mobile app for converting between various measurements units.',
+      videoSrc: '/projects/ConverTo_SR.mp4',
+      tech: ['React Native'],
+      image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80',
+      githubLink: 'https://github.com/darshan-dinesh-mp/converto-app.git',
+    }
+  ];
+
+  const certificates = [
+    {
+      title: 'Developing Back-End Apps with Node.js and Express',
+      issuer: 'IBM',
+      date: 'April 2024',
+      image: '/images/Developing_BackEnd_Apps_with_Nodejs_and_Express.png',
+      link: "https://www.coursera.org/account/accomplishments/verify/U9VZA85CFY28",
+    },
+  ];
+
+  const achievements = [
+    {
+      title: '1st place in Coding Event',
+      event: 'National-level IT Fest “Epitome-2k24,”',
+      date: 'November 2024',
+      venue: 'AIMIT, St.Aloysius(Deemed to be University), Beeri, Mangaluru, Karnataka, India.',
+      icon: Trophy
+    },
+    {
+      title: '1st place in Coding Event',
+      event: 'National-level IT Fest "Joshiana 11.0,"',
+      venue: 'St. Joseph Engineering College, Mangalore, Karnataka, India.',
+      date: 'September 2022',
+      icon: Trophy
+    }
+  ];
+
+  const education = [
+    {
+      degree: 'Master of Computer Application',
+      school: 'NMAM Institute of Technology, NITTE',
+      year: '2023-2025',
+      description: 'CGPA: 8.97 (SEMESTER 3)'
+    },
+    {
+      degree: 'Bachelor of Computer Application',
+      school: 'St.Aloysius College Mangalore',
+      year: '2020-2023',
+      description: 'CGPA: 8.47'
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-black text-white overflow-hidden">
+      {/* Animated Background */}
+      <div className="fixed inset-0 -z-10">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_0%,transparent_100%)]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-blue-900/20" />
+      </div>
+
+      {/* Navigation */}
+      <nav className="hidden md:block fixed top-0 w-full backdrop-blur-md bg-black/30 border-b border-white/10 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <span className="text-2xl font-bold gradient-text">
+              Darshan
+            </span>
+            <div className="flex space-x-8">
+              <a href="#about" className="nav-link">About</a>
+              <a href="#projects" className="nav-link">Projects</a>
+              <a href="#skills" className="nav-link">Skills</a>
+              <a href="#contact" className="nav-link">Contact</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <main>
+        {/* Hero Section */}
+        <section id="about" className="min-h-screen flex items-center justify-center pt-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <h2 className="text-5xl font-bold">
+                <span className="gradient-text">Hey👋,<br />I'm Darshan</span>
+              </h2>
+              <p className="text-xl text-white/50">
+                <span className="text-3xl font-bold gradient-text">Full Stack Develospaner</span><br/>
+                Crafting digital experiences with code. Proficient in MERN stack,
+                React Native, and Laravel development.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <button className="rotating-border">
+                  <a target='_blank'
+                    href="https://drive.google.com/file/d/18Bj3A1ao7_O5I0OLfkgBJojMnCBKMJ0z/view"
+                    className="flex items-center gap-2 relative bg-black px-6 py-3 rounded-lg">
+                    <Download size={20} />
+                    <span>Resume</span>
+                  </a>
+                </button>
+                <a href='mailto:darshandineshmp@gmail.com' className="px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg
+                             hover:bg-white/10 hover:border-white/40 transition-all duration-300
+                             flex items-center gap-2">
+                  <Mail size={20} />
+                  <span>Contact Me</span>
+                </a>
+              </div>
+              <div className="flex gap-6 pt-4">
+                <a target='_blank' href="https://github.com/darshan-dinesh-mp" className="text-white/50 hover:text-white transition-colors duration-300">
+                  <Github size={24} />
+                </a>
+                <a target='_blank' href="https://www.linkedin.com/in/darshan-dinesh-mp" className="text-white/50 hover:text-blue-500 transition-colors duration-300">
+                  <Linkedin size={24} />
+                </a>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="floating-element aspect-square rounded-full overflow-hidden
+                    border-4 border-white/10 shadow-2xl">
+                <Image
+                  src="/images/profile.png"
+                  alt="Profile"
+                  width={100}
+                  height={100}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              {/* Decorative Elements */}
+              <div className="absolute -z-10 inset-0 blur-3xl bg-gradient-to-br from-purple-500/30 to-blue-500/30" />
+            </div>
+          </div>
+        </section>
+
+
+        {/* Projects Section */}
+        <section id="projects" className="py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-5xl font-bold text-center mb-16 gradient-text">
+              Featured Projects
+            </h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {projects.map((project, index) => (
+                <div key={index} className="project-card group relative">
+                  <div
+                    className="relative h-48 mb-4 rounded-lg overflow-hidden cursor-pointer"
+                    onClick={() => openModal(project.videoSrc)}
+                  >
+                    <video
+                      src={project.videoSrc}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="transition-transform duration-500 group-hover:scale-110"
+                    />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+                  <p className="text-white/70 mb-4">{project.description}</p>
+                  <div className="flex flex-wrap gap-2 mb-2">
+                    {project.tech.map((tech, techIndex) => (
+                      <span key={techIndex} className="px-3 py-1 text-sm bg-white/5 backdrop-blur-sm
+                                               border border-white/10 rounded-full">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <a
+                    href={project.githubLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center text-blue-500 hover:text-blue-400 transition-colors relative z-10"
+                  >
+                    View on GitHub <ExternalLink className="ml-2 h-4 w-4" />
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Modal */}
+        {isModalOpen && currentVideo && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
+            <div className="relative w-full max-w-4xl">
+              <button
+                onClick={closeModal}
+                className="absolute top-4 right-4 text-white text-xl z-10"
+              >
+                ✕
+              </button>
+              <video
+                src={currentVideo}
+                controls
+                autoPlay
+                className="w-full h-auto rounded-lg shadow-lg"
+              />
+            </div>
+          </div>
+        )}
+
+        {/* Skills Section */}
+        <section id="skills" className="py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-5xl font-bold text-center mb-16 gradient-text">
+              My Tech Skills
+            </h2>
+            <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-2">
+              {skillsWithIcons.map((skill, index) => (
+                <div
+                  key={index}
+                  className="skill-item group flex flex-col items-center justify-center p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 transition-transform hover:bg-white/10 hover:border-white/30 hover:scale-105"
+                >
+                  {skill.icon}
+                  <span className="mt-2 font-bold text-center">{skill.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Certificates Section */}
+        <section className="py-20 relative overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-5xl font-bold text-center mb-16 gradient-text">
+              Certificates
+            </h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {certificates.map((cert, index) => (
+                <div key={index} className="certificate-card group h-64">
+                  <Image
+                    src={cert.image}
+                    alt={cert.title}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="certificate-overlay">
+                    <div className="text-center p-6">
+                      <h3 className="text-xl font-bold mb-2">{cert.title}</h3>
+                      <p className="text-white/70 mb-2">{cert.issuer}</p>
+                      <p className="text-white/50">{cert.date}</p>
+                      <a target='_blank' href='https://www.coursera.org/account/accomplishments/verify/U9VZA85CFY28' className="mt-4 px-4 py-2 bg-white/10 rounded-lg
+                                     hover:bg-white/20 transition-colors duration-300
+                                     flex items-center gap-2 mx-auto">
+                        <ExternalLink size={16} />
+                        <span>View Certificate</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Achievements Section */}
+        <section className="py-20 relative">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-5xl font-bold text-center mb-16 gradient-text">
+              Achievements
+            </h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              {achievements.map((achievement, index) => (
+                <div key={index} className="achievement-card group">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="p-3 rounded-lg bg-white/5 backdrop-blur-sm">
+                      <achievement.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="text-xl font-bold">{achievement.title}</h3>
+                  </div>
+                  <p className="text-white/70"> - {achievement.event}</p>
+                  <p className="text-white/70"> - {achievement.venue}</p>
+                  <p className="text-white/70"> - {achievement.date}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Education Timeline Section */}
+        <section className="py-20 relative">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-5xl font-bold text-center mb-16 gradient-text">
+              Education
+            </h2>
+            <div className="space-y-8">
+              {education.map((edu, index) => (
+                <div key={index} className="timeline-item">
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center">
+                      <h3 className="text-xl font-bold gradient-text">{edu.degree}</h3>
+                      <span className="text-white/50">{edu.year}</span>
+                    </div>
+                    <p className="text-lg text-white/70">{edu.school}</p>
+                    <p className="text-white/50">{edu.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section id="contact" className="py-20">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-5xl font-bold text-center mb-16 gradient-text">
+              Get in Touch
+            </h2>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <input
+                  type='text'
+                  placeholder="Your Name"
+                  required
+                  name="entry.1546317662"
+                  className="form-input"
+                />
+                <input
+                  type="email"
+                  placeholder="Your Email"
+                  required
+                  name="entry.874628732"
+                  className="form-input"
+                />
+              </div>
+              <textarea
+                placeholder="Your Message"
+                required
+                name="entry.1693678078"
+                rows={6}
+                className="form-input"
+              />
+              <button type="submit" className="rotating-border w-full p-[1px] font-bold" disabled={loading}>
+                <span className="flex justify-center items-center relative bg-black px-6 py-3 rounded-lg">
+                  {loading ? 'Sending...' : 'Send Message'}
+                </span>
+              </button>
+            </form>
+          </div>
+        </section>
+        {showAlert && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div
+              className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg text-center w-96 transform transition-transform duration-300 scale-95 animate-scaleUp"
+            >
+              <p className="mb-4 text-gray-800 dark:text-gray-200">{alertMessage}</p>
+              <button
+                onClick={closeAlert}
+                className="px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors"
+              >
+                OK
+              </button>
+            </div>
+          </div>
+        )}
+      </main>
+    </div>
+  );
+}
