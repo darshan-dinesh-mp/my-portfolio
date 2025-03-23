@@ -223,9 +223,9 @@ export default function Home() {
               <div className="flex flex-wrap gap-4 justify-center md:justify-start">
                 <button className="rotating-border">
                   <a target='_blank'
-                    href="https://drive.google.com/file/d/18Bj3A1ao7_O5I0OLfkgBJojMnCBKMJ0z/view"
+                    href="https://drive.google.com/file/d/1zkcCK_xjCwb5bvlBaD8IYUCTDt7IpBX3/view"
                     className="flex items-center gap-2 relative bg-black px-6 py-3 rounded-lg">
-                    <Download size={20} />
+                    <Download size={20}/>
                     <span>Resume</span>
                   </a>
                 </button>
