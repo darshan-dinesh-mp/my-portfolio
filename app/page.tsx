@@ -220,14 +220,17 @@ export default function Home() {
               </p>
               <div className="flex flex-wrap gap-4 justify-center md:justify-start">
                 <button className="rotating-border">
-                  <a target='_blank'
+                  <a
+                    target="_blank"
                     href="https://drive.google.com/file/d/1zkcCK_xjCwb5bvlBaD8IYUCTDt7IpBX3/view"
-                    className="flex items-center gap-2 relative bg-black px-6 py-3 rounded-lg">
-                    <Download size={20} />
+                    className="flex items-center gap-2 relative bg-black px-6 py-3 rounded-lg group border border-white/20 hover:bg-white/10 hover:border-white/40 transition-all duration-300"
+                  >
+                    <Download size={20} className="transition-transform duration-200 group-hover:scale-125" />
                     <span>Resume</span>
                   </a>
                 </button>
-                <a href='mailto:darshandineshmp@gmail.com' className="px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg
+
+                <a href='mailto:darshandineshmp@gmail.com' className="px-6 py-3 backdrop-blur-sm border border-white/20 rounded-lg
                              hover:bg-white/10 hover:border-white/40 transition-all duration-300
                              flex items-center gap-2">
                   <Mail size={20} />
