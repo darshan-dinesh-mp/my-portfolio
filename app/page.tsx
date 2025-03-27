@@ -1,7 +1,7 @@
 'use client';
 
 import { FaJava, FaCode, FaPython, FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaPhp, FaGit, FaGithub } from 'react-icons/fa';
-import { SiTailwindcss, SiExpress, SiLaravel, SiFirebase, SiMysql, SiMongodb, SiFigma, SiRender } from 'react-icons/si';
+import { SiTypescript, SiTailwindcss, SiExpress, SiLaravel, SiFirebase, SiMysql, SiMongodb, SiFigma, SiRender } from 'react-icons/si';
 import { Download, Github, Linkedin, Mail, Award, Medal, Trophy, ExternalLink, Menu } from 'lucide-react';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -60,23 +60,21 @@ export default function Home() {
 
 
   const skillsWithIcons = [
-    { name: 'HTML', icon: <FaHtml5 className="text-orange-600 text-4xl group-hover:scale-110 transition-transform" /> },
-    { name: 'CSS', icon: <FaCss3Alt className="text-blue-600 text-4xl group-hover:scale-110 transition-transform" /> },
-    { name: 'JavaScript', icon: <FaJs className="text-yellow-500 text-4xl group-hover:scale-110 transition-transform" /> },
-    { name: 'Tailwind CSS', icon: <SiTailwindcss className="text-teal-400 text-4xl group-hover:scale-110 transition-transform" /> },
     { name: 'React', icon: <FaReact className="text-blue-400 text-4xl group-hover:scale-110 transition-transform" /> },
     { name: 'React Native', icon: <FaReact className="text-teal-500 text-4xl group-hover:scale-110 transition-transform" /> },
     { name: 'Node', icon: <FaNodeJs className="text-green-600 text-4xl group-hover:scale-110 transition-transform" /> },
     { name: 'Express', icon: <SiExpress className="text-gray-600 text-4xl group-hover:scale-110 transition-transform" /> },
-    { name: 'PHP', icon: <FaPhp className="text-[#787CB5] text-4xl group-hover:scale-110 transition-transform" /> },
     { name: 'Laravel', icon: <SiLaravel className="text-[#FF2D20] text-4xl group-hover:scale-110 transition-transform" /> },
-    { name: 'Firebase', icon: <SiFirebase className="text-[#FFCA28] text-4xl group-hover:scale-110 transition-transform" /> },
     { name: 'MySQL', icon: <SiMysql className="text-blue-700 text-4xl group-hover:scale-110 transition-transform" /> },
     { name: 'MongoDB', icon: <SiMongodb className="text-green-500 text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'Firebase', icon: <SiFirebase className="text-[#FFCA28] text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'HTML', icon: <FaHtml5 className="text-orange-600 text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'CSS', icon: <FaCss3Alt className="text-blue-600 text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'JavaScript', icon: <FaJs className="text-yellow-500 text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'TypeScript', icon: <SiTypescript className="text-blue-500 text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'Tailwind CSS', icon: <SiTailwindcss className="text-teal-400 text-4xl group-hover:scale-110 transition-transform" /> },
     { name: 'Git', icon: <FaGit className="text-orange-500 text-4xl group-hover:scale-110 transition-transform" /> },
     { name: 'GitHub', icon: <FaGithub className="text-black text-4xl group-hover:scale-110 transition-transform" /> },
-    { name: 'Figma', icon: <SiFigma className="text-pink-500 text-4xl group-hover:scale-110 transition-transform" /> },
-    { name: 'Render', icon: <SiRender className="text-[#46E3B7] text-4xl group-hover:scale-110 transition-transform" /> },
     { name: 'Java', icon: <FaJava className="text-[#F89820] text-4xl group-hover:scale-110 transition-transform" /> },
     { name: 'C', icon: <FaCode className="text-[#A8B9CC] text-4xl group-hover:scale-110 transition-transform" /> },
     { name: 'Python', icon: <FaPython className="text-[#3776AB] text-4xl group-hover:scale-110 transition-transform" /> },
@@ -87,7 +85,7 @@ export default function Home() {
       title: 'Automated Feedback Collection and Academic Performance System',
       description: 'Platform where faculties can efficiently manage their students and track their progress, with features for assessment and communication.',
       videoSrc: '/projects/smap_SR.mp4',
-      tech: ['HTML', 'CSS', 'JavaScript', 'Laravel', 'MySQL'],
+      tech: ['Laravel', 'MySQL'],
       image: 'https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=800&q=80',
       githubLink: 'https://github.com/darshan-dinesh-mp/Automated-Feedback-Collection-and-Academic-Performance-System',
     },
@@ -213,7 +211,7 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-8 text-center md:text-left">
               <h2 className="text-4xl md:text-5xl font-bold">
-                <span className="gradient-text">Hey👋,<br />I'm Darshan</span>
+                <span className="gradient-text lg:text-8xl">Hey,<br />I'm Darshan</span>
               </h2>
               <p className="text-lg md:text-xl text-white/50">
                 <span className="text-2xl md:text-3xl font-bold gradient-text">Full Stack Developer</span><br />
@@ -225,7 +223,7 @@ export default function Home() {
                   <a target='_blank'
                     href="https://drive.google.com/file/d/1zkcCK_xjCwb5bvlBaD8IYUCTDt7IpBX3/view"
                     className="flex items-center gap-2 relative bg-black px-6 py-3 rounded-lg">
-                    <Download size={20}/>
+                    <Download size={20} />
                     <span>Resume</span>
                   </a>
                 </button>
@@ -270,10 +268,10 @@ export default function Home() {
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {projects.map((project, index) => (
-                <div key={index} className="project-card group relative">
+                <div key={index} className="project-card group relative cursor-pointer"
+                  onClick={() => openModal(project.videoSrc)}>
                   <div
-                    className="relative h-48 mb-4 rounded-lg overflow-hidden cursor-pointer"
-                    onClick={() => openModal(project.videoSrc)}
+                    className="relative h-48 mb-4 rounded-lg overflow-hidden"
                   >
                     <video
                       src={project.videoSrc}
