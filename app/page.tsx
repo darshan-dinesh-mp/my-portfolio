@@ -460,8 +460,9 @@ export default function Home() {
                 rows={6}
                 className="form-input"
               />
-              <button type="submit" className="rotating-border w-full p-[1px] font-bold" disabled={loading}>
-                <span className="flex justify-center items-center relative bg-black px-6 py-3 rounded-lg">
+              <button type="submit" className="rotating-border w-full p-[1px]" disabled={loading}>
+                <span className="flex justify-center items-center relative bg-black px-6 py-3 backdrop-blur-sm border border-white/20 rounded-lg
+                             hover:bg-white/10 hover:border-white/40 transition-all duration-300">
                   {loading ? 'Sending...' : 'Send Message'}
                 </span>
               </button>
