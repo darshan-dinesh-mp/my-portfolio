@@ -183,6 +183,8 @@ export default function Home() {
                 <a href="#about" onClick={() => setIsMenuOpen(false)} className="nav-link">About</a>
                 <a href="#projects" onClick={() => setIsMenuOpen(false)} className="nav-link">Projects</a>
                 <a href="#skills" onClick={() => setIsMenuOpen(false)} className="nav-link">Skills</a>
+                <a href="#certificates" onClick={() => setIsMenuOpen(false)} className="nav-link">Certificates</a>
+                <a href="#achievements" onClick={() => setIsMenuOpen(false)} className="nav-link">Achievements</a>
                 <a href="#contact" onClick={() => setIsMenuOpen(false)} className="nav-link">Contact</a>
               </div>
             </div>
@@ -199,6 +201,8 @@ export default function Home() {
               <a href="#about" className="nav-link">About</a>
               <a href="#projects" className="nav-link">Projects</a>
               <a href="#skills" className="nav-link">Skills</a>
+              <a href="#certificates" className="nav-link">Certificates</a>
+              <a href="#achievements" className="nav-link">Achievements</a>
               <a href="#contact" className="nav-link">Contact</a>
             </div>
           </div>
@@ -350,7 +354,7 @@ export default function Home() {
         </section>
 
         {/* Certificates Section */}
-        <section className="py-20 relative overflow-hidden">
+        <section id='certificates' className="py-20 relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">
               Certificates
@@ -384,7 +388,7 @@ export default function Home() {
         </section>
 
         {/* Achievements Section */}
-        <section className="py-20 relative">
+        <section id='achievements' className="py-20 relative">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">
               Achievements
