@@ -123,6 +123,13 @@ export default function Home() {
       image: '/images/Developing_BackEnd_Apps_with_Nodejs_and_Express.png',
       link: "https://www.coursera.org/account/accomplishments/verify/U9VZA85CFY28",
     },
+    {
+      title: 'React Native Unveiled: From Basics to Mobile Mastery',
+      issuer: 'Meta Brains',
+      date: 'March 2025',
+      image: '/images/react_native_udemy.png',
+      link: "https://udemy-certificate.s3.amazonaws.com/image/UC-b987a133-0219-491a-92ea-84ef4eed02bb.jpg?v=1742672999000",
+    }
   ];
 
   const achievements = [
@@ -373,7 +380,7 @@ export default function Home() {
                       <h3 className="text-xl font-bold mb-2">{cert.title}</h3>
                       <p className="text-white/70 mb-2">{cert.issuer}</p>
                       <p className="text-white/50">{cert.date}</p>
-                      <a target='_blank' href='https://www.coursera.org/account/accomplishments/verify/U9VZA85CFY28' className="mt-4 px-4 py-2 bg-white/10 rounded-lg
+                      <a target='_blank' href={cert.link} className="mt-4 px-4 py-2 bg-white/10 rounded-lg
                                      hover:bg-white/20 transition-colors duration-300
                                      flex items-center gap-2 mx-auto">
                         <ExternalLink size={16} />
