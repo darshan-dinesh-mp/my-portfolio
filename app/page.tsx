@@ -1,8 +1,8 @@
 'use client';
 
-import { FaJava, FaCode, FaPython, FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaPhp, FaGit, FaGithub } from 'react-icons/fa';
-import { SiTypescript, SiTailwindcss, SiExpress, SiLaravel, SiFirebase, SiMysql, SiMongodb, SiFigma, SiRender } from 'react-icons/si';
-import { Download, Github, Linkedin, Mail, Award, Medal, Trophy, ExternalLink, Menu } from 'lucide-react';
+import { FaJava, FaCode, FaPython, FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGit, FaGithub } from 'react-icons/fa';
+import { SiTypescript, SiTailwindcss, SiExpress, SiLaravel, SiFirebase, SiMysql, SiMongodb } from 'react-icons/si';
+import { Download, Github, Linkedin, Mail, Trophy, ExternalLink, Menu } from 'lucide-react';
 import Image from 'next/image';
 import { useState } from 'react';
 
@@ -82,11 +82,17 @@ export default function Home() {
 
   const projects = [
     {
+      title: 'Personal Portfolio',
+      description: 'Responsive Personal Portfolio to showcase my technical background',
+      img: "/images/portfolio.png",
+      tech: ['Next.js'],
+      githubLink: 'https://github.com/darshan-dinesh-mp/my-portfolio',
+    },
+    {
       title: 'Automated Feedback Collection and Academic Performance System',
       description: 'Platform where faculties can efficiently manage their students and track their progress, with features for assessment and communication.',
       videoSrc: '/projects/smap_SR.mp4',
       tech: ['Laravel', 'MySQL'],
-      image: 'https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=800&q=80',
       githubLink: 'https://github.com/darshan-dinesh-mp/Automated-Feedback-Collection-and-Academic-Performance-System',
     },
     {
@@ -94,7 +100,6 @@ export default function Home() {
       description: ' A web app where users can discover local food options, leave reviews, and create personalized must-try lists.',
       videoSrc: '/projects/eatables_SR.mp4',
       tech: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL'],
-      image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80',
       githubLink: 'https://github.com/darshan-dinesh-mp/eatables.git',
     },
     {
@@ -102,17 +107,8 @@ export default function Home() {
       description: 'Full Stack Finance Tracking web application.',
       videoSrc: '/projects/MoneyFlow_SR.mp4',
       tech: ['React', 'Node.js', 'Express', 'MongoDB'],
-      image: 'https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80',
       githubLink: 'https://github.com/darshan-dinesh-mp/money-flow-web-app',
     },
-    {
-      title: 'ConverTo',
-      description: 'Mobile app for converting between various measurements units.',
-      videoSrc: '/projects/ConverTo_SR.mp4',
-      tech: ['React Native'],
-      image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80',
-      githubLink: 'https://github.com/darshan-dinesh-mp/converto-app.git',
-    }
   ];
 
   const certificates = [
@@ -192,6 +188,7 @@ export default function Home() {
                 <a href="#skills" onClick={() => setIsMenuOpen(false)} className="nav-link">Skills</a>
                 <a href="#certificates" onClick={() => setIsMenuOpen(false)} className="nav-link">Certificates</a>
                 <a href="#achievements" onClick={() => setIsMenuOpen(false)} className="nav-link">Achievements</a>
+                <a href="#education" onClick={() => setIsMenuOpen(false)} className="nav-link">Education</a>
                 <a href="#contact" onClick={() => setIsMenuOpen(false)} className="nav-link">Contact</a>
               </div>
             </div>
@@ -210,6 +207,7 @@ export default function Home() {
               <a href="#skills" className="nav-link">Skills</a>
               <a href="#certificates" className="nav-link">Certificates</a>
               <a href="#achievements" className="nav-link">Achievements</a>
+              <a href="#education" className="nav-link">Education</a>
               <a href="#contact" className="nav-link">Contact</a>
             </div>
           </div>
@@ -287,14 +285,23 @@ export default function Home() {
                   <div
                     className="relative h-48 mb-4 rounded-lg overflow-hidden"
                   >
-                    <video
-                      src={project.videoSrc}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="transition-transform duration-500 group-hover:scale-110"
-                    />
+                    {
+                      project.videoSrc ?
+                        <video
+                          src={project.videoSrc}
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          className="transition-transform duration-500 group-hover:scale-110"
+                        />
+                        :
+                        <Image
+                          src={project.img}
+                          alt="Project Thumbnail"
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-110" />
+                    }
                   </div>
                   <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
                   <p className="text-white/70 mb-4">{project.description}</p>
@@ -419,7 +426,7 @@ export default function Home() {
         </section>
 
         {/* Education Timeline Section */}
-        <section className="py-20 relative">
+        <section id='education' className="py-20 relative">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">
               Education
