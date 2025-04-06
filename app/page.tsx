@@ -297,8 +297,8 @@ export default function Home() {
                         />
                         :
                         <Image
-                          src={project.img}
-                          alt="Project Thumbnail"
+                          src={project.img || ''}
+                          alt="Oops Image could not be rendered. Dont worry I'll look into it"
                           fill
                           className="object-cover transition-transform duration-500 group-hover:scale-110" />
                     }
