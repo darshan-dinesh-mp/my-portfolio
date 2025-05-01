@@ -120,11 +120,10 @@ export default function Home() {
       link: "https://www.coursera.org/account/accomplishments/verify/U9VZA85CFY28",
     },
     {
-      title: 'React Native Unveiled: From Basics to Mobile Mastery',
-      issuer: 'Meta Brains',
-      date: 'March 2025',
-      image: '/images/react_native_udemy.png',
-      link: "https://udemy-certificate.s3.amazonaws.com/image/UC-b987a133-0219-491a-92ea-84ef4eed02bb.jpg?v=1742672999000",
+      title: 'React Crash Course: From Zero to Hero',
+      date: 'May 2025',
+      image: '/images/react-crash-course.jpg',
+      link: "https://udemy-certificate.s3.amazonaws.com/image/UC-8d867c43-51ea-41fa-80dc-aad3c0f92136.jpg?v=1746098151000",
     }
   ];
 
@@ -385,7 +384,7 @@ export default function Home() {
                   <div className="certificate-overlay">
                     <div className="text-center p-6">
                       <h3 className="text-xl font-bold mb-2">{cert.title}</h3>
-                      <p className="text-white/70 mb-2">{cert.issuer}</p>
+                      <p className="text-white/70 mb-2">{cert?.issuer}</p>
                       <p className="text-white/50">{cert.date}</p>
                       <a target='_blank' href={cert.link} className="mt-4 px-4 py-2 bg-white/10 rounded-lg
                                      hover:bg-white/20 transition-colors duration-300
