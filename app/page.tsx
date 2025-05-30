@@ -230,7 +230,7 @@ export default function Home() {
                 <button className="rotating-border">
                   <a
                     target="_blank"
-                    href="https://drive.google.com/file/d/1hC0QutV4gSvv8CfnStVQ14JcyH6YiBt4/view?usp=sharing"
+                    href="https://drive.google.com/file/d/1U3KXArFn71Adn2EWI410BL6uZE1UhjRz/view?usp=sharing"
                     className="flex items-center gap-2 relative bg-black px-6 py-3 rounded-lg group border border-white/20 hover:bg-white/10 hover:border-white/40 transition-all duration-300"
                   >
                     <Download size={20} className="transition-transform duration-200 group-hover:scale-125" />
