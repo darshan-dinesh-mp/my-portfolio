@@ -11,9 +11,15 @@ export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentVideo, setCurrentVideo] = useState(null);
+  const [currentImage, setCurrentImage] = useState(null);
 
-  const openModal = (videoSrc: any) => {
+  const openVideoModal = (videoSrc: any) => {
     setCurrentVideo(videoSrc);
+    setIsModalOpen(true);
+  };
+
+  const openImageModal = (img: any) => {
+    setCurrentImage(img)
     setIsModalOpen(true);
   };
 
@@ -89,6 +95,21 @@ export default function Home() {
       githubLink: 'https://github.com/darshan-dinesh-mp/my-portfolio',
     },
     {
+      title: 'Food Delivery App',
+      description: 'Built a Full-Stack food ordering and delivery platform tailored specifically for small local restaurants that manage their own deliveries.',
+      img: '/images/FoodDeliveryApp.png',
+      tech: ['React Native CLI', 'Node.js', 'Express', 'MongoDB', 'Firebase Auth'],
+      githubLink: 'https://github.com/darshan-dinesh-mp/Food-Delivery-App',
+    },
+    {
+      title: 'Vibe - Global Chat Platform',
+      description: 'A real-time chat application that allows users to connect with people worldwide, without the need for authentication, with public and private chat rooms.',
+      img: '/images/Vibe.png',
+      tech: ['React', 'Node.js', 'Express', 'Socket.io'],
+      githubLink: 'https://github.com/darshan-dinesh-mp/chat-with-vibe',
+      website: 'https://vibe-global-chat.onrender.com/',
+    },
+    {
       title: 'Automated Feedback Collection and Academic Performance System',
       description: 'Platform where faculties can efficiently manage their students and track their progress, with features for assessment and communication.',
       videoSrc: '/projects/smap_SR.mp4',
@@ -96,18 +117,18 @@ export default function Home() {
       githubLink: 'https://github.com/darshan-dinesh-mp/Automated-Feedback-Collection-and-Academic-Performance-System',
     },
     {
-      title: 'Eatables - Food Discovery and Review Platform',
-      description: ' A web app where users can discover local food options, leave reviews, and create personalized must-try lists.',
-      videoSrc: '/projects/eatables_SR.mp4',
-      tech: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL'],
-      githubLink: 'https://github.com/darshan-dinesh-mp/eatables.git',
-    },
-    {
       title: 'Money Flow',
       description: 'Full Stack Finance Tracking web application.',
       videoSrc: '/projects/MoneyFlow_SR.mp4',
       tech: ['React', 'Node.js', 'Express', 'MongoDB'],
       githubLink: 'https://github.com/darshan-dinesh-mp/money-flow-web-app',
+    },
+    {
+      title: 'Eatables - Food Discovery and Review Platform',
+      description: ' A web app where users can discover local food options, leave reviews, and create personalized must-try lists.',
+      videoSrc: '/projects/eatables_SR.mp4',
+      tech: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL'],
+      githubLink: 'https://github.com/darshan-dinesh-mp/eatables.git',
     },
   ];
 
@@ -280,7 +301,12 @@ export default function Home() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {projects.map((project, index) => (
                 <div key={index} className="project-card group relative cursor-pointer"
-                  onClick={() => openModal(project.videoSrc)}>
+                  onClick={() => {
+                    project.videoSrc ? openVideoModal(project.videoSrc) : null
+                    project.img ? openImageModal(project.img) : null
+                  }
+                  }
+                >
                   <div
                     className="relative h-48 mb-4 rounded-lg overflow-hidden"
                   >
@@ -312,14 +338,26 @@ export default function Home() {
                       </span>
                     ))}
                   </div>
-                  <a
-                    href={project.githubLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center text-blue-500 hover:text-blue-400 transition-colors relative z-10"
-                  >
-                    View on GitHub <ExternalLink className="ml-2 h-4 w-4" />
-                  </a>
+                  {project.githubLink &&
+                    <a
+                      href={project.githubLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-blue-500 hover:text-blue-400 transition-colors relative z-10"
+                    >
+                      View on GitHub <ExternalLink className="ml-2 h-4 w-4" />
+                    </a>
+                  }
+                  {project.website &&
+                    <a
+                      href={project.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-blue-500 hover:text-blue-400 transition-colors relative z-10 ml-4"
+                    >
+                      Visit Website <ExternalLink className="ml-2 h-4 w-4" />
+                    </a>
+                  }
                 </div>
               ))}
             </div>
@@ -327,7 +365,7 @@ export default function Home() {
         </section>
 
         {/* Modal */}
-        {isModalOpen && currentVideo && (
+        {isModalOpen && (currentVideo || currentImage) && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
             <div className="relative w-full max-w-4xl">
               <button
@@ -336,12 +374,24 @@ export default function Home() {
               >
                 ✕
               </button>
-              <video
-                src={currentVideo}
-                controls
-                autoPlay
-                className="w-full h-auto rounded-lg shadow-lg"
-              />
+              {
+                currentVideo ? (
+                  <video
+                    src={currentVideo}
+                    controls
+                    autoPlay
+                    className="w-full h-auto rounded-lg shadow-lg"
+                  />
+                ) : (
+                  <Image
+                    src={currentImage || ''}
+                    alt="Project Image"
+                    width={100}
+                    height={100}
+                    className="w-full h-auto rounded-lg shadow-lg object-cover"
+                  />
+                )
+              }
             </div>
           </div>
         )}
