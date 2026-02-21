@@ -1,17 +1,29 @@
 'use client';
 
-import { FaJava, FaCode, FaPython, FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGit, FaGithub } from 'react-icons/fa';
-import { SiTypescript, SiTailwindcss, SiExpress, SiLaravel, SiFirebase, SiMysql, SiMongodb } from 'react-icons/si';
-import { Download, Github, Linkedin, Mail, Trophy, ExternalLink, Menu } from 'lucide-react';
+import { FaJava, FaCode, FaPython, FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGit, FaGithub, FaServer } from 'react-icons/fa';
+import { SiTypescript, SiTailwindcss, SiExpress, SiLaravel, SiFirebase, SiMysql, SiMongodb, SiSpringboot, SiAngular, SiBootstrap } from 'react-icons/si';
+import { Download, Github, Linkedin, Mail, Trophy, ExternalLink, Menu, Sun, Moon, Briefcase } from 'lucide-react';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Home() {
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentVideo, setCurrentVideo] = useState(null);
   const [currentImage, setCurrentImage] = useState(null);
+  const [theme, setTheme] = useState('dark');
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
 
   const openVideoModal = (videoSrc: any) => {
     setCurrentVideo(videoSrc);
@@ -28,8 +40,6 @@ export default function Home() {
     setIsModalOpen(false);
   };
 
-
-  //Contact Form Logic
   const [loading, setLoading] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
   const [showAlert, setShowAlert] = useState(false);
@@ -64,12 +74,20 @@ export default function Home() {
     setShowAlert(false);
   };
 
+  // Split skills into Active and Past
+  const activeSkills = [
+    { name: 'Java', icon: <FaJava className="text-[#F89820] text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'Spring Boot', icon: <SiSpringboot className="text-[#6DB33F] text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'Microservices', icon: <FaServer className="text-gray-500 dark:text-gray-300 text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'Angular', icon: <SiAngular className="text-[#DD0031] text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'Bootstrap', icon: <SiBootstrap className="text-[#7952B3] text-4xl group-hover:scale-110 transition-transform" /> },
+  ];
 
-  const skillsWithIcons = [
+  const pastSkills = [
     { name: 'React', icon: <FaReact className="text-blue-400 text-4xl group-hover:scale-110 transition-transform" /> },
     { name: 'React Native', icon: <FaReact className="text-teal-500 text-4xl group-hover:scale-110 transition-transform" /> },
-    { name: 'Node', icon: <FaNodeJs className="text-green-600 text-4xl group-hover:scale-110 transition-transform" /> },
-    { name: 'Express', icon: <SiExpress className="text-gray-600 text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'Node.js', icon: <FaNodeJs className="text-green-600 text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'Express', icon: <SiExpress className="text-gray-600 dark:text-gray-400 text-4xl group-hover:scale-110 transition-transform" /> },
     { name: 'Laravel', icon: <SiLaravel className="text-[#FF2D20] text-4xl group-hover:scale-110 transition-transform" /> },
     { name: 'MySQL', icon: <SiMysql className="text-blue-700 text-4xl group-hover:scale-110 transition-transform" /> },
     { name: 'MongoDB', icon: <SiMongodb className="text-green-500 text-4xl group-hover:scale-110 transition-transform" /> },
@@ -80,10 +98,20 @@ export default function Home() {
     { name: 'TypeScript', icon: <SiTypescript className="text-blue-500 text-4xl group-hover:scale-110 transition-transform" /> },
     { name: 'Tailwind CSS', icon: <SiTailwindcss className="text-teal-400 text-4xl group-hover:scale-110 transition-transform" /> },
     { name: 'Git', icon: <FaGit className="text-orange-500 text-4xl group-hover:scale-110 transition-transform" /> },
-    { name: 'GitHub', icon: <FaGithub className="text-black text-4xl group-hover:scale-110 transition-transform" /> },
-    { name: 'Java', icon: <FaJava className="text-[#F89820] text-4xl group-hover:scale-110 transition-transform" /> },
+    { name: 'GitHub', icon: <FaGithub className="text-gray-900 dark:text-white text-4xl group-hover:scale-110 transition-transform" /> },
     { name: 'C', icon: <FaCode className="text-[#A8B9CC] text-4xl group-hover:scale-110 transition-transform" /> },
     { name: 'Python', icon: <FaPython className="text-[#3776AB] text-4xl group-hover:scale-110 transition-transform" /> },
+  ];
+
+  const experience = [
+    {
+      role: 'System Engineer Trainee',
+      company: 'Infosys',
+      location: 'Mysore, India',
+      duration: 'October 2025 - Present',
+      description: 'Currently undergoing comprehensive training and actively developing solutions using Java Spring Boot, Microservice Architecture, Angular, and Bootstrap.',
+      icon: Briefcase
+    }
   ];
 
   const projects = [
@@ -170,7 +198,7 @@ export default function Home() {
       degree: 'Master of Computer Application',
       school: 'NMAM Institute of Technology, NITTE',
       year: '2023-2025',
-      description: 'CGPA: 8.97 (SEMESTER 3)'
+      description: 'CGPA: 9.02 (SEMESTER 3)'
     },
     {
       degree: 'Bachelor of Computer Application',
@@ -181,55 +209,68 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden">
+    <div className="min-h-screen bg-gray-50 dark:bg-black text-gray-900 dark:text-white transition-colors duration-300 overflow-hidden">
       {/* Animated Background */}
-      <div className="fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_0%,transparent_100%)]" />
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-blue-900/20" />
+      <div className="fixed inset-0 -z-10 transition-colors duration-300">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.05)_0%,transparent_100%)] dark:bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_0%,transparent_100%)]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-200/50 via-gray-100 to-blue-200/50 dark:from-purple-900/20 dark:via-black dark:to-blue-900/20" />
       </div>
 
-
       {/* Mobile Navigation */}
-      <nav className="md:hidden fixed top-0 w-full backdrop-blur-md bg-black/50 z-50">
+      <nav className="md:hidden fixed top-0 w-full backdrop-blur-md bg-white/70 dark:bg-black/50 z-50 border-b border-gray-200 dark:border-white/10 transition-colors duration-300">
         <div className="px-4 py-4">
-          <div className="flex items-center justify-end">
+          <div className="flex items-center justify-between">
+            <button
+              onClick={toggleTheme}
+              className="p-2 hover:bg-gray-200 dark:hover:bg-white/10 rounded-lg transition-colors"
+            >
+              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+              className="p-2 hover:bg-gray-200 dark:hover:bg-white/10 rounded-lg transition-colors"
             >
               <Menu size={24} />
             </button>
           </div>
           {isMenuOpen && (
-            <div className="absolute top-full left-0 w-full bg-black/95 backdrop-blur-md py-4 border-b border-white/10">
+            <div className="absolute top-full left-0 w-full bg-white/95 dark:bg-black/95 backdrop-blur-md py-4 border-b border-gray-200 dark:border-white/10 transition-colors duration-300">
               <div className="flex flex-col space-y-4 px-4">
-                <a href="#about" onClick={() => setIsMenuOpen(false)} className="nav-link">About</a>
-                <a href="#projects" onClick={() => setIsMenuOpen(false)} className="nav-link">Projects</a>
-                <a href="#skills" onClick={() => setIsMenuOpen(false)} className="nav-link">Skills</a>
-                <a href="#certificates" onClick={() => setIsMenuOpen(false)} className="nav-link">Certificates</a>
-                <a href="#achievements" onClick={() => setIsMenuOpen(false)} className="nav-link">Achievements</a>
-                <a href="#education" onClick={() => setIsMenuOpen(false)} className="nav-link">Education</a>
-                <a href="#contact" onClick={() => setIsMenuOpen(false)} className="nav-link">Contact</a>
+                <a href="#about" onClick={() => setIsMenuOpen(false)} className="nav-link font-medium">About</a>
+                <a href="#experience" onClick={() => setIsMenuOpen(false)} className="nav-link font-medium">Experience</a>
+                <a href="#projects" onClick={() => setIsMenuOpen(false)} className="nav-link font-medium">Projects</a>
+                <a href="#skills" onClick={() => setIsMenuOpen(false)} className="nav-link font-medium">Skills</a>
+                <a href="#certificates" onClick={() => setIsMenuOpen(false)} className="nav-link font-medium">Certificates</a>
+                <a href="#achievements" onClick={() => setIsMenuOpen(false)} className="nav-link font-medium">Achievements</a>
+                <a href="#education" onClick={() => setIsMenuOpen(false)} className="nav-link font-medium">Education</a>
+                <a href="#contact" onClick={() => setIsMenuOpen(false)} className="nav-link font-medium">Contact</a>
               </div>
             </div>
           )}
         </div>
       </nav>
 
-
       {/* Desktop Navigation */}
-      <nav className="hidden md:block fixed top-0 w-full backdrop-blur-md bg-black/50 z-50">
+      <nav className="hidden md:block fixed top-0 w-full backdrop-blur-md bg-white/70 dark:bg-black/50 z-50 border-b border-gray-200 dark:border-transparent transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center h-16">
-            <div className="flex space-x-8">
-              <a href="#about" className="nav-link">About</a>
-              <a href="#projects" className="nav-link">Projects</a>
-              <a href="#skills" className="nav-link">Skills</a>
-              <a href="#certificates" className="nav-link">Certificates</a>
-              <a href="#achievements" className="nav-link">Achievements</a>
-              <a href="#education" className="nav-link">Education</a>
-              <a href="#contact" className="nav-link">Contact</a>
+          <div className="flex items-center justify-between h-16">
+            <div className="flex space-x-6 lg:space-x-8 mx-auto text-sm lg:text-base">
+              <a href="#about" className="nav-link font-medium">About</a>
+              <a href="#experience" className="nav-link font-medium">Experience</a>
+              <a href="#projects" className="nav-link font-medium">Projects</a>
+              <a href="#skills" className="nav-link font-medium">Skills</a>
+              <a href="#certificates" className="nav-link font-medium">Certificates</a>
+              <a href="#achievements" className="nav-link font-medium">Achievements</a>
+              <a href="#education" className="nav-link font-medium">Education</a>
+              <a href="#contact" className="nav-link font-medium">Contact</a>
             </div>
+            <button
+              onClick={toggleTheme}
+              className="p-2 hover:bg-gray-200 dark:hover:bg-white/10 rounded-lg transition-colors absolute right-8"
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
           </div>
         </div>
       </nav>
@@ -242,42 +283,39 @@ export default function Home() {
               <h2 className="text-4xl md:text-5xl font-bold">
                 <span className="gradient-text lg:text-8xl">Hey,<br />I'm Darshan</span>
               </h2>
-              <p className="text-lg md:text-xl text-white/50">
+              <p className="text-lg md:text-xl text-gray-600 dark:text-white/50">
                 <span className="text-2xl md:text-3xl font-bold gradient-text">Full Stack Developer</span><br />
                 Crafting digital experiences with code. Proficient in MERN stack,
-                React Native, and Laravel development.
+                React Native, and modern enterprise frameworks like Spring Boot.
               </p>
               <div className="flex flex-wrap gap-4 justify-center md:justify-start">
                 <button className="rotating-border">
                   <a
                     target="_blank"
                     href="https://drive.google.com/file/d/1bZa_LMzl3cjnNp11mqGErnK102UX4-wj/view?usp=sharing"
-                    className="flex items-center gap-2 relative bg-black px-6 py-3 rounded-lg group border border-white/20 hover:bg-white/10 hover:border-white/40 transition-all duration-300"
+                    className="flex items-center gap-2 relative bg-white dark:bg-black px-6 py-3 rounded-lg group border border-gray-300 dark:border-white/20 hover:bg-gray-50 dark:hover:bg-white/10 transition-all duration-300"
                   >
                     <Download size={20} className="transition-transform duration-200 group-hover:scale-125" />
                     <span>Resume</span>
                   </a>
                 </button>
 
-                <a href='mailto:darshandineshmp@gmail.com' className="px-6 py-3 backdrop-blur-sm border border-white/20 rounded-lg
-                             hover:bg-white/10 hover:border-white/40 transition-all duration-300
-                             flex items-center gap-2">
+                <a href='mailto:darshandineshmp@gmail.com' className="px-6 py-3 backdrop-blur-sm border border-gray-300 dark:border-white/20 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 transition-all duration-300 flex items-center gap-2">
                   <Mail size={20} />
                   <span>Contact Me</span>
                 </a>
               </div>
               <div className="flex gap-6 pt-4 justify-center md:justify-start">
-                <a target='_blank' href="https://github.com/darshan-dinesh-mp" className="text-white/50 hover:text-white transition-colors duration-300">
+                <a target='_blank' href="https://github.com/darshan-dinesh-mp" className="text-gray-500 hover:text-gray-900 dark:text-white/50 dark:hover:text-white transition-colors duration-300">
                   <Github size={24} />
                 </a>
-                <a target='_blank' href="https://www.linkedin.com/in/darshan-dinesh-mp" className="text-white/50 hover:text-blue-500 transition-colors duration-300">
+                <a target='_blank' href="https://www.linkedin.com/in/darshan-dinesh-mp" className="text-gray-500 hover:text-blue-600 dark:text-white/50 dark:hover:text-blue-500 transition-colors duration-300">
                   <Linkedin size={24} />
                 </a>
               </div>
             </div>
             <div className="relative order-first md:order-last">
-              <div className="floating-element aspect-square rounded-full overflow-hidden
-                            border-4 border-white/10 shadow-2xl">
+              <div className="floating-element aspect-square rounded-full overflow-hidden border-4 border-gray-200 dark:border-white/10 shadow-xl dark:shadow-2xl">
                 <Image
                   src="/images/profile.png"
                   alt="Profile"
@@ -286,11 +324,51 @@ export default function Home() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute -z-10 inset-0 blur-3xl bg-gradient-to-br from-purple-500/30 to-blue-500/30" />
+              <div className="absolute -z-10 inset-0 blur-3xl bg-gradient-to-br from-purple-300/50 to-blue-300/50 dark:from-purple-500/30 dark:to-blue-500/30" />
             </div>
           </div>
         </section>
 
+        {/* Experience Section */}
+        <section id="experience" className="py-20 relative">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">
+              Work Experience
+            </h2>
+            <div className="space-y-8">
+              {experience.map((exp, index) => (
+                <div key={index} className="group relative bg-white dark:bg-white/5 p-8 rounded-2xl shadow-lg dark:shadow-none border border-gray-200 dark:border-white/10 hover:border-blue-500/50 transition-colors">
+                  <div className="flex flex-col md:flex-row gap-6 items-start">
+                    <div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 shrink-0">
+                      <exp.icon size={32} />
+                    </div>
+                    <div className="space-y-3 w-full">
+                      <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
+                        <h3 className="text-2xl font-bold">{exp.role}</h3>
+                        <span className="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 px-4 py-1.5 rounded-full w-fit">
+                          {exp.duration}
+                        </span>
+                      </div>
+                      <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 text-gray-600 dark:text-gray-400 font-medium">
+                        <p className="flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-gray-400 dark:bg-gray-500"></span>
+                          {exp.company}
+                        </p>
+                        <p className="flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-gray-400 dark:bg-gray-500"></span>
+                          {exp.location}
+                        </p>
+                      </div>
+                      <p className="text-gray-700 dark:text-white/80 leading-relaxed mt-4">
+                        {exp.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* Projects Section */}
         <section id="projects" className="py-20">
@@ -300,16 +378,13 @@ export default function Home() {
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {projects.map((project, index) => (
-                <div key={index} className="project-card group relative cursor-pointer"
+                <div key={index} className="project-card group relative cursor-pointer bg-white/50 dark:bg-transparent rounded-xl p-4 shadow-lg dark:shadow-none border border-gray-200 dark:border-white/10 transition-all hover:shadow-xl"
                   onClick={() => {
                     project.videoSrc ? openVideoModal(project.videoSrc) : null
                     project.img ? openImageModal(project.img) : null
-                  }
-                  }
+                  }}
                 >
-                  <div
-                    className="relative h-48 mb-4 rounded-lg overflow-hidden"
-                  >
+                  <div className="relative h-48 mb-4 rounded-lg overflow-hidden border border-gray-100 dark:border-transparent">
                     {
                       project.videoSrc ?
                         <video
@@ -318,7 +393,7 @@ export default function Home() {
                           loop
                           muted
                           playsInline
-                          className="transition-transform duration-500 group-hover:scale-110"
+                          className="transition-transform duration-500 group-hover:scale-110 object-cover w-full h-full"
                         />
                         :
                         <Image
@@ -329,35 +404,36 @@ export default function Home() {
                     }
                   </div>
                   <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                  <p className="text-white/70 mb-4">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-2">
+                  <p className="text-gray-600 dark:text-white/70 mb-4">{project.description}</p>
+                  <div className="flex flex-wrap gap-2 mb-4">
                     {project.tech.map((tech, techIndex) => (
-                      <span key={techIndex} className="px-3 py-1 text-sm bg-white/5 backdrop-blur-sm
-                                               border border-white/10 rounded-full">
+                      <span key={techIndex} className="px-3 py-1 text-sm bg-gray-100 dark:bg-white/5 backdrop-blur-sm border border-gray-200 dark:border-white/10 rounded-full text-gray-800 dark:text-gray-200">
                         {tech}
                       </span>
                     ))}
                   </div>
-                  {project.githubLink &&
-                    <a
-                      href={project.githubLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center text-blue-500 hover:text-blue-400 transition-colors relative z-10"
-                    >
-                      View on GitHub <ExternalLink className="ml-2 h-4 w-4" />
-                    </a>
-                  }
-                  {project.website &&
-                    <a
-                      href={project.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center text-blue-500 hover:text-blue-400 transition-colors relative z-10 ml-4"
-                    >
-                      Visit Website <ExternalLink className="ml-2 h-4 w-4" />
-                    </a>
-                  }
+                  <div className="flex gap-4">
+                    {project.githubLink &&
+                      <a
+                        href={project.githubLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center text-blue-600 dark:text-blue-500 hover:text-blue-800 dark:hover:text-blue-400 transition-colors relative z-10"
+                      >
+                        View on GitHub <ExternalLink className="ml-1 h-4 w-4" />
+                      </a>
+                    }
+                    {project.website &&
+                      <a
+                        href={project.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center text-blue-600 dark:text-blue-500 hover:text-blue-800 dark:hover:text-blue-400 transition-colors relative z-10"
+                      >
+                        Visit Website <ExternalLink className="ml-1 h-4 w-4" />
+                      </a>
+                    }
+                  </div>
                 </div>
               ))}
             </div>
@@ -366,11 +442,11 @@ export default function Home() {
 
         {/* Modal */}
         {isModalOpen && (currentVideo || currentImage) && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
-            <div className="relative w-full max-w-4xl">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
+            <div className="relative w-full max-w-4xl p-4">
               <button
                 onClick={closeModal}
-                className="absolute top-4 right-4 text-white text-xl z-10"
+                className="absolute top-0 right-0 md:-top-10 md:-right-10 text-white text-3xl z-10 hover:text-gray-300 transition-colors"
               >
                 ✕
               </button>
@@ -380,16 +456,17 @@ export default function Home() {
                     src={currentVideo}
                     controls
                     autoPlay
-                    className="w-full h-auto rounded-lg shadow-lg"
+                    className="w-full h-auto rounded-lg shadow-2xl"
                   />
                 ) : (
-                  <Image
-                    src={currentImage || ''}
-                    alt="Project Image"
-                    width={100}
-                    height={100}
-                    className="w-full h-auto rounded-lg shadow-lg object-cover"
-                  />
+                  <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-2xl">
+                    <Image
+                      src={currentImage || ''}
+                      alt="Project Preview"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
                 )
               }
             </div>
@@ -400,18 +477,43 @@ export default function Home() {
         <section id="skills" className="py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">
-              My Tech Skills
+              Technical Skills
             </h2>
-            <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-2">
-              {skillsWithIcons.map((skill, index) => (
-                <div
-                  key={index}
-                  className="skill-item group flex flex-col items-center justify-center p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 transition-transform hover:bg-white/10 hover:border-white/30 hover:scale-105"
-                >
-                  {skill.icon}
-                  <span className="mt-2 font-bold text-center">{skill.name}</span>
-                </div>
-              ))}
+            
+            {/* Active Skills */}
+            <div className="mb-16">
+              <h3 className="text-2xl font-semibold text-center mb-8 text-gray-800 dark:text-gray-200">
+                Currently Working With
+              </h3>
+              <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+                {activeSkills.map((skill, index) => (
+                  <div
+                    key={index}
+                    className="skill-item group flex flex-col items-center justify-center w-32 md:w-40 p-6 rounded-xl bg-white dark:bg-white/5 backdrop-blur-sm border border-gray-200 dark:border-white/10 shadow-md dark:shadow-none transition-transform hover:bg-blue-50 dark:hover:bg-white/10 hover:-translate-y-2 hover:border-blue-200 dark:hover:border-blue-500/30"
+                  >
+                    {skill.icon}
+                    <span className="mt-4 font-bold text-center text-sm md:text-base">{skill.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Past Skills */}
+            <div>
+              <h3 className="text-2xl font-semibold text-center mb-8 text-gray-800 dark:text-gray-200">
+                Familiar / Previously Used
+              </h3>
+              <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
+                {pastSkills.map((skill, index) => (
+                  <div
+                    key={index}
+                    className="skill-item group flex flex-col items-center justify-center p-6 rounded-xl bg-white dark:bg-white/5 backdrop-blur-sm border border-gray-200 dark:border-white/10 shadow-md dark:shadow-none transition-transform hover:bg-gray-50 dark:hover:bg-white/10 hover:scale-105"
+                  >
+                    {skill.icon}
+                    <span className="mt-4 font-bold text-center text-sm md:text-base">{skill.name}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -424,21 +526,19 @@ export default function Home() {
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {certificates.map((cert, index) => (
-                <div key={index} className="certificate-card group h-64">
+                <div key={index} className="certificate-card group h-64 rounded-xl overflow-hidden shadow-lg border border-gray-200 dark:border-transparent relative">
                   <Image
                     src={cert.image}
                     alt={cert.title}
                     fill
                     className="object-cover"
                   />
-                  <div className="certificate-overlay">
-                    <div className="text-center p-6">
+                  <div className="certificate-overlay absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="text-center p-6 w-full text-white">
                       <h3 className="text-xl font-bold mb-2">{cert.title}</h3>
-                      <p className="text-white/70 mb-2">{cert?.issuer}</p>
-                      <p className="text-white/50">{cert.date}</p>
-                      <a target='_blank' href={cert.link} className="mt-4 px-4 py-2 bg-white/10 rounded-lg
-                                     hover:bg-white/20 transition-colors duration-300
-                                     flex items-center gap-2 mx-auto">
+                      <p className="text-white/80 mb-2">{cert?.issuer}</p>
+                      <p className="text-white/60 text-sm mb-4">{cert.date}</p>
+                      <a target='_blank' href={cert.link} className="inline-flex px-4 py-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors duration-300 items-center gap-2 mx-auto backdrop-blur-sm">
                         <ExternalLink size={16} />
                         <span>View Certificate</span>
                       </a>
@@ -456,18 +556,20 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">
               Achievements
             </h2>
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 gap-8 justify-center">
               {achievements.map((achievement, index) => (
-                <div key={index} className="achievement-card group">
+                <div key={index} className="achievement-card group bg-white dark:bg-transparent p-6 rounded-xl shadow-lg dark:shadow-none border border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/30 transition-colors">
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="p-3 rounded-lg bg-white/5 backdrop-blur-sm">
-                      <achievement.icon className="w-6 h-6 text-white" />
+                    <div className="p-3 rounded-lg bg-gray-100 dark:bg-white/5 backdrop-blur-sm">
+                      <achievement.icon className="w-6 h-6 text-yellow-500" />
                     </div>
                     <h3 className="text-xl font-bold">{achievement.title}</h3>
                   </div>
-                  <p className="text-white/70"> - {achievement.event}</p>
-                  <p className="text-white/70"> - {achievement.venue}</p>
-                  <p className="text-white/70"> - {achievement.date}</p>
+                  <div className="space-y-2 text-gray-600 dark:text-white/70">
+                    <p className="flex items-start gap-2"><span className="text-blue-500">•</span> {achievement.event}</p>
+                    <p className="flex items-start gap-2"><span className="text-blue-500">•</span> {achievement.venue}</p>
+                    <p className="flex items-start gap-2"><span className="text-blue-500">•</span> {achievement.date}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -480,16 +582,16 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">
               Education
             </h2>
-            <div className="space-y-8">
+            <div className="space-y-8 pl-6 ml-4">
               {education.map((edu, index) => (
-                <div key={index} className="timeline-item">
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <h3 className="text-xl font-bold gradient-text">{edu.degree}</h3>
-                      <span className="text-white/50">{edu.year}</span>
+                <div key={index} className="timeline-item border-l-2 border-gray-400 relative">
+                  <div className="space-y-2 bg-white dark:bg-white/5 p-6 rounded-xl shadow-md dark:shadow-none border border-gray-100 dark:border-white/10">
+                    <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
+                      <h3 className="text-xl font-bold text-blue-600 dark:text-blue-400">{edu.degree}</h3>
+                      <span className="text-sm font-medium text-gray-500 dark:text-white/50 bg-gray-100 dark:bg-white/10 px-3 py-1 rounded-full w-fit">{edu.year}</span>
                     </div>
-                    <p className="text-lg text-white/70">{edu.school}</p>
-                    <p className="text-white/50">{edu.description}</p>
+                    <p className="text-lg font-medium text-gray-700 dark:text-white/80">{edu.school}</p>
+                    <p className="text-gray-500 dark:text-white/50 font-mono text-sm">{edu.description}</p>
                   </div>
                 </div>
               ))}
@@ -503,21 +605,21 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">
               Get in Touch
             </h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6 bg-white dark:bg-transparent p-8 rounded-2xl shadow-xl dark:shadow-none border border-gray-200 dark:border-transparent">
               <div className="grid md:grid-cols-2 gap-6">
                 <input
                   type='text'
                   placeholder="Your Name"
                   required
                   name="entry.1546317662"
-                  className="form-input"
+                  className="w-full px-4 py-3 bg-gray-50 dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-white/50 transition-colors"
                 />
                 <input
                   type="email"
                   placeholder="Your Email"
                   required
                   name="entry.874628732"
-                  className="form-input"
+                  className="w-full px-4 py-3 bg-gray-50 dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-white/50 transition-colors"
                 />
               </div>
               <textarea
@@ -525,26 +627,27 @@ export default function Home() {
                 required
                 name="entry.1693678078"
                 rows={6}
-                className="form-input"
+                className="w-full px-4 py-3 bg-gray-50 dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-white/50 transition-colors resize-none"
               />
               <button type="submit" className="rotating-border w-full p-[1px]" disabled={loading}>
-                <span className="flex justify-center items-center relative bg-black px-6 py-3 backdrop-blur-sm border border-white/20 rounded-lg
-                             hover:bg-white/10 hover:border-white/40 transition-all duration-300">
+                <span className="flex justify-center items-center relative bg-blue-600 dark:bg-black px-6 py-3 backdrop-blur-sm border border-transparent dark:border-white/20 rounded-lg text-white hover:bg-blue-700 dark:hover:bg-white/10 hover:border-white/40 transition-all duration-300 font-medium">
                   {loading ? 'Sending...' : 'Send Message'}
                 </span>
               </button>
             </form>
           </div>
         </section>
+        
+        {/* Alert Modal */}
         {showAlert && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
             <div
-              className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg text-center w-96 transform transition-transform duration-300 scale-95 animate-scaleUp"
+              className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-2xl text-center w-96 transform transition-transform duration-300 scale-95 border border-gray-200 dark:border-gray-700"
             >
-              <p className="mb-4 text-gray-800 dark:text-gray-200">{alertMessage}</p>
+              <p className="mb-6 text-gray-800 dark:text-gray-200 font-medium">{alertMessage}</p>
               <button
                 onClick={closeAlert}
-                className="px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors"
+                className="px-6 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors w-full font-medium"
               >
                 OK
               </button>
