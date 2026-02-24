@@ -285,8 +285,7 @@ export default function Home() {
               </h2>
               <p className="text-lg md:text-xl text-gray-600 dark:text-white/50">
                 <span className="text-2xl md:text-3xl font-bold gradient-text">Full Stack Developer</span><br />
-                Crafting digital experiences with code. Proficient in MERN stack,
-                React Native, and modern enterprise frameworks like Spring Boot.
+                Crafting digital experiences with code. Full-Stack developer currently working with Angular, React and Spring Boot.
               </p>
               <div className="flex flex-wrap gap-4 justify-center md:justify-start">
                 <button className="rotating-border">
