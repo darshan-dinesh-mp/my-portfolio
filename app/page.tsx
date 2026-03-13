@@ -130,12 +130,12 @@ export default function Home() {
       githubLink: 'https://github.com/darshan-dinesh-mp/Food-Delivery-App',
     },
     {
-      title: 'Vibe - Global Chat Platform',
+      title: 'Chup Chaap - Global Chat Platform',
       description: 'A real-time chat application that allows users to connect with people worldwide, without the need for authentication, with public and private chat rooms.',
       img: '/images/Vibe.png',
       tech: ['React', 'Node.js', 'Express', 'Socket.io'],
-      githubLink: 'https://github.com/darshan-dinesh-mp/chat-with-vibe',
-      website: 'https://vibe-global-chat.onrender.com/',
+      githubLink: 'https://github.com/darshan-dinesh-mp/chup-chaap',
+      website: 'https://chup-chaap.onrender.com/',
     },
     {
       title: 'Automated Feedback Collection and Academic Performance System',
