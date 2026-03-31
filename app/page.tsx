@@ -105,11 +105,11 @@ export default function Home() {
 
   const experience = [
     {
-      role: 'System Engineer Trainee',
+      role: 'System Engineer',
       company: 'Infosys',
       location: 'Mysore, India',
       duration: 'October 2025 - Present',
-      description: 'Currently undergoing comprehensive training and actively developing solutions using Java Spring Boot, Microservice Architecture, Angular, and Bootstrap.',
+      description: 'Developing enterprise solutions using Java Spring Boot, Microservice Architecture, Angular, and Bootstrap.',
       icon: Briefcase
     }
   ];
